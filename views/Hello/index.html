@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hello {$name}</title>
+        <meta charset='utf-8' />
+    </head>
+    <body>
+        <h1>Hello {$name}</h1>
+        <table border='1' style='width: 100%'>
+            {loop="data"}
+                <tr>
+                    <td>
+                        {$value.id}
+                    </td>
+                    <td>
+                        {$value.othr}
+                    </td>
+                </tr>
+            {/loop}
+        </table>
+    </body>
+</html>
