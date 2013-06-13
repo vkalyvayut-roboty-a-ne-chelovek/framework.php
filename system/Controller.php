@@ -15,10 +15,7 @@ class Controller
         // если задана проекция параметров на их имена, иначе они будут доступны только по числовому индексу
         if (isset($paramMap))
         {
-            foreach($paramMap as $key => $param)
-            {
-                $this->params[$key] = $params[$param];
-            }
+            $this->_mapParams($params, $paramMap);
         }
         else
         {
@@ -58,5 +55,53 @@ class Controller
         {
             return $default;
         }
+    }
+
+    protected function getPost($name, $default = NULL)
+    {
+        if (array_key_exists($name, $_POST))
+        {
+            return $_POST[$name];
+        }
+        else
+        {
+            return $default;
+        }
+    }
+
+    protected function _mapParams($params, $paramMap)
+    {
+        foreach($paramMap as $key => $param)
+        {
+            $this->params[$key] = $params[$param];
+        }
+    }
+
+    protected function redirectTo($location)
+    {
+        header('Location: ' . $location);
+        die;
+    }
+
+    protected function getCookie($name, $default = NULL)
+    {
+        if (array_key_exists($name, $_COOKIE))
+        {
+            return $_COOKIE[$name];
+        }
+        else
+        {
+            return $default;
+        }
+    }
+
+    protected function setCookie($name, $value)
+    {
+        setcookie($name, $value, time() + 3600 * 24);
+    }
+
+    protected function deleteCookie($name)
+    {
+        setcookie($name, NULL, time() - 3600);
     }
 }

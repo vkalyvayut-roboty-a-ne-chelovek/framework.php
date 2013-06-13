@@ -169,7 +169,7 @@ class Framework
 
 
         // проверка - если номер сопадения больше количества совпадений вообще.
-        if ((max(array_values($list)) + 1) > count($data))
+        if ((count($list) > 0) && (max(array_values($list)) + 1) > count($data))
         {
             return NULL;
         }
